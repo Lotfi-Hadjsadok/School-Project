@@ -1,0 +1,9 @@
+{
+    "name": "lotfi-dev/school",
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    },
+    "require": {}
+}
