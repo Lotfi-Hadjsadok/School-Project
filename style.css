@@ -9,3 +9,35 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: school
 Template: astra
 */
+
+.container__faculties{
+    display: grid;
+    padding: 10px;
+    gap:10px;
+   grid-template-columns: 1fr  1fr 1fr;
+ 
+}
+
+.card__faculty{
+    display: flex;
+    
+    border-radius: 10px;
+    padding: 50px;
+    background-color: #0274be;
+    color: whitesmoke;
+    justify-content: center;
+    justify-items: center;
+}
+.card__faculty p{
+   margin: 0;
+   font-size: 20px;
+}
+@media screen and (max-width:900px) {
+    .container__faculties{
+        grid-template-columns:1fr 1fr;
+    }
+    .card__faculty{
+        padding: 50px 20px;
+        font-size: 18px;
+    }
+}

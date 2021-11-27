@@ -37,3 +37,4 @@ function ast_remove_plugin_metaboxes()
 {
 	remove_meta_box('astra_settings_meta_box', '', 'side'); // Remove Astra Settings
 }
+add_shortcode('faculties', array(Course::class, 'show_faculties'));

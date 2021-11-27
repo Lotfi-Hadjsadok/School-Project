@@ -15,6 +15,11 @@ class Course
             'menu_icon' => 'dashicons-welcome-learn-more',
             'capability_type' => 'course',
             'map_meta_cap' => true,
+            'rewrite' => array(
+                'slug' => 'course',
+                'with_front' => false
+            ),
+            'taxonomies' => array('post_tag', 'module'),
             'labels' => array(
                 'name' => 'Course',
                 'add_new' => 'Add Course',
@@ -22,25 +27,57 @@ class Course
 
             )
         ));
-        register_post_type('school-level', array(
+        register_taxonomy('module', 'course', array(
             'public' => true,
             'has_archive' => true,
-            'rewrite' => array(
-                'slug' => 'level'
-            ),
-            'supports' => array(
-                'title', 'editor', 'thumbnail'
-            ),
-            'menu_icon' => 'dashicons-awards',
-            'capability_type' => 'post',
-            'map_meta_cap' => true,
+            'hierarchical' => true,
             'labels' => array(
-                'name' => 'School Year',
-                'add_new' => 'Add New',
-                'add_new_item' => 'Add New'
+                'name' => 'Modules',
+                'add_new' => 'Add Modules',
+                'add_new_item' => 'Add New Module'
 
             )
         ));
+        register_taxonomy('faculty', 'course', array(
+            'public' => true,
+            'has_archive' => true,
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => 'Faculties',
+                'add_new' => 'Add faculty',
+                'add_new_item' => 'Add New faculty'
+
+            )
+        ));
+        register_taxonomy('type', 'course', array(
+            'public' => true,
+            'has_archive' => true,
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => 'Type',
+                'add_new' => 'Add type',
+                'add_new_item' => 'Add New type'
+
+            )
+        ));
+    }
+    static function show_faculties()
+    {
+        $terms = get_terms(array(
+            'taxonomy' => 'faculty',
+            'hide_empty' => false,
+        ));
+        echo '<div class="container__faculties">';
+        foreach ($terms as $term) {
+?>
+            <a href="<?php echo get_term_link($term, 'faculty') ?>">
+                <div class="card__faculty">
+                    <p><?php echo $term->name ?></p>
+                </div>
+            </a>
+            <?php
+        }
+        echo '</div>';
     }
     static function add_custom_column($columns)
     {
@@ -61,7 +98,7 @@ class Course
         if ($post->post_type == 'course') {
             switch ($columns) {
                 case 'status':
-?>
+            ?>
                     <p style="background-color: <?php
 
                                                 switch ($post->post_status) {
