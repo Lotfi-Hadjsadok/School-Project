@@ -94,10 +94,25 @@ class Course
                     <p><?php echo $term->name ?></p>
                 </div>
             </a>
-            <?php
-            var_dump(dirname(__FILE__));
+        <?php
         }
         echo '</div>';
+    }
+    static function search_results()
+    {
+        ?>
+        <div id="search__overlay" class="search__overlay">
+            <div class="search__top">
+                <div class="search__top_container">
+                    <i class="fas fa-search search__searchicon"></i>
+                    <input type="text" placeholder="Pfa,Oracle,Ocamel,Math ..">
+                    <i class="fas fa-times search_closeicon"></i>
+                </div>
+
+            </div>
+
+        </div>
+        <?php
     }
     static function add_custom_column($columns)
     {
@@ -118,7 +133,7 @@ class Course
         if ($post->post_type == 'course') {
             switch ($columns) {
                 case 'status':
-            ?>
+        ?>
                     <p style="background-color: <?php
 
                                                 switch ($post->post_status) {

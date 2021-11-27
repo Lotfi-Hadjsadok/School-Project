@@ -34,10 +34,45 @@ Template: astra
    text-align: center;
 }
 .courses_search{
-    color: white;
     font-size: 20px;
     cursor: pointer;
-    margin-top: 10px;
+    color: whitesmoke;
+}
+.overflow__hidden{
+    overflow: hidden;
+}
+.search__overlay{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: rgb(206, 240, 245);
+}
+.search__top{
+  
+    color: gray;
+    background-color: whitesmoke;
+}
+.search__top_container{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+ 
+    
+    max-width: 1080px;
+}
+
+.search__top_container input{
+    width: 100%;
+    margin: 0 10px;
+}
+.search__top_container i{
+    cursor: pointer;
+    font-size: 30px;
 }
 @media screen and (max-width:900px) {
     .container__modules{
