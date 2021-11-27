@@ -12,6 +12,7 @@
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
 use Inc\Course;
+use Inc\CourseApis;
 
 /**
  * Define Constants
@@ -38,6 +39,7 @@ function link_font_awesome()
 	wp_enqueue_script('main-js', get_stylesheet_directory_uri(__FILE__) . '/build/index.js', array('jquery'), '1.0.0', true);
 	wp_enqueue_style('fontawsome', 'https://use.fontawesome.com/releases/v5.15.4/css/all.css');
 }
+add_action('rest_api_init', array(CourseApis::class, 'courses_custom_rest'));
 add_action('do_meta_boxes', 'ast_remove_plugin_metaboxes');
 function ast_remove_plugin_metaboxes()
 {

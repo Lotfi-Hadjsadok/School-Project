@@ -41,9 +41,44 @@ Template: astra
 .overflow__hidden{
     overflow: hidden;
 }
+.search__results{
+    max-width: 1500px;
+    margin: 10px auto;
+}
+.search__results-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding:50px 10px;
+    border-radius: 10px;
+    color: whitesmoke;
+    background-color: rgb(5, 96, 112);
+}
+.search__results-card h2{
+    color: whitesmoke;
+}
+.search__results-cards{
+    margin: 0 10px;
+    font-size: 15px;
+    gap: 10px;
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns:   1fr 1fr 1fr;
+}
+.search__results-card p{
+    margin: 0 5px;
+    color:whitesmoke;
+    font-weight: bold;
+}
+.search__results-card div{
+    display: flex;
+}
 .search__overlay{
+  
     position: fixed;
-    display: none;
+    /* display: none; */
     width: 100%;
     height: 100%;
     left: 0;
@@ -72,7 +107,13 @@ Template: astra
 }
 .search__top_container i{
     cursor: pointer;
+    margin: 0 10px;
     font-size: 30px;
+}
+@media screen and (max-width:1300px) {
+    .search__results-cards{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 @media screen and (max-width:900px) {
     .container__modules{
@@ -81,5 +122,8 @@ Template: astra
     .card__module{
         padding: 50px 20px;
         font-size: 18px !important;
+    }
+    .search__results-cards{
+        grid-template-columns: 1fr;
     }
 }

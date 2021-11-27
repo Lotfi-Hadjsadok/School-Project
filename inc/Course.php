@@ -12,6 +12,7 @@ class Course
             'supports' => array(
                 'title', 'editor', 'thumbnail'
             ),
+            'show_in_rest' => true,
             'menu_icon' => 'dashicons-welcome-learn-more',
             'capability_type' => 'course',
             'map_meta_cap' => true,
@@ -101,16 +102,23 @@ class Course
     static function search_results()
     {
         ?>
-        <div id="search__overlay" class="search__overlay">
+        <div class="search__overlay">
             <div class="search__top">
                 <div class="search__top_container">
                     <i class="fas fa-search search__searchicon"></i>
-                    <input type="text" placeholder="Pfa,Oracle,Ocamel,Math ..">
+                    <input type="text" class="search__input" placeholder="Pfa,Oracle,Ocamel,Math ..">
                     <i class="fas fa-times search_closeicon"></i>
                 </div>
 
             </div>
+            <div class="search__results">
+                <h1 class="search__results-title">Courses</h1>
+                <div class="search__results-cards">
 
+                </div>
+
+
+            </div>
         </div>
         <?php
     }
