@@ -75,7 +75,27 @@ class Course
                     <p><?php echo $term->name ?></p>
                 </div>
             </a>
+        <?php
+        }
+        echo '</div>';
+    }
+    static function show_modules()
+    {
+        $terms = get_terms(array(
+            'taxonomy' => 'module',
+            'hide_empty' => false,
+        ));
+        echo '<div class="container__modules">';
+
+        foreach ($terms as $term) {
+        ?>
+            <a href="<?php echo get_term_link($term, 'module') ?>">
+                <div class="card__module">
+                    <p><?php echo $term->name ?></p>
+                </div>
+            </a>
             <?php
+            var_dump(dirname(__FILE__));
         }
         echo '</div>';
     }
