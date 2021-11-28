@@ -30,6 +30,7 @@ function child_enqueue_styles()
 
 add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 add_action('init', array(Course::class, 'create_post_type'));
+add_filter('enter_title_here', array(Course::class, 'course_title_placeholder'), 20, 2);
 add_filter('manage_course_posts_columns', array(Course::class, 'add_custom_column'));
 add_action('manage_course_posts_custom_column',  array(Course::class, 'custom_column_data'), 10, 2);
 add_action('after_setup_theme', array(Course::class, 'custom_image_thumbnail'));

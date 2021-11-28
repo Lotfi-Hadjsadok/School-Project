@@ -75,10 +75,26 @@ Template: astra
 .search__results-card div{
     display: flex;
 }
+.spinner {
+   
+    width: 2rem;
+    height: 2rem;
+    border: 0.25rem solid #2f3f50;
+    border-bottom: 0.25rem solid rgba(0,0,0,0);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 9999;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 .search__overlay{
   
     position: fixed;
-    /* display: none; */
+    display: none;
     width: 100%;
     height: 100%;
     left: 0;
@@ -116,10 +132,11 @@ Template: astra
     }
 }
 @media screen and (max-width:900px) {
-    .container__modules{
+    .container__modules,.container__faculties{
         grid-template-columns:1fr 1fr;
     }
-    .card__module{
+
+    .card__module,.card__faculty{
         padding: 50px 20px;
         font-size: 18px !important;
     }

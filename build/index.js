@@ -19,12 +19,17 @@ class Search {
     this.closeIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search_closeicon');
     this.searchOverlay = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search__overlay');
     this.searchInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search__input');
+    this.spinner = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.spinner');
+    this.searchResultsTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search__results-title');
+    this.searchResultsTitle.hide();
+    this.spinner.hide();
     this.timeout;
     this.searchResults = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search__results-cards');
     this.events();
   }
 
   events() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '.search__results-card', this.vistiCourse.bind(this));
     this.searchIcon.on('click', this.searchOverlayState.bind(this));
     this.closeIcon.on('click', this.searchOverlayState.bind(this));
     this.searchInput.on('keyup', this.getData.bind(this));
@@ -35,26 +40,49 @@ class Search {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').toggleClass('overflow__hidden');
   }
 
+  vistiCourse() {
+    let searchCard = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search__results-card');
+    let post_link = searchCard.data('link');
+    window.location.replace(post_link);
+  }
+
   getData() {
     clearTimeout(this.timeout);
+    this.spinner.show();
     this.timeout = setTimeout(() => {
+      if (this.searchInput.val() == '') {
+        this.searchResults.html('');
+        this.searchResultsTitle.hide();
+        this.spinner.hide();
+        return;
+      }
+
       jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON('http://school.local/wp-json/university/v1/courses?query=' + this.searchInput.val()).then(result => {
+        if (result.length == 0) {
+          this.searchResults.html('');
+          this.searchResultsTitle.hide();
+          this.spinner.hide();
+          return;
+        }
+
+        this.spinner.hide();
+        this.searchResultsTitle.show();
         this.searchResults.html(result.map(post => {
           var _post$module, _post$module2, _post$type, _post$type2, _post$faculty, _post$faculty2;
 
           return `
-                        <div class="search__results-card">
+                        <button data-link='${post.post_link}' class="search__results-card">
                         <h2>${post.title}</h2>
                         <div>
                            <a href='${(_post$module = post.module) === null || _post$module === void 0 ? void 0 : _post$module.permalink}'><p>${((_post$module2 = post.module) === null || _post$module2 === void 0 ? void 0 : _post$module2.name) || 'module'}</p></a>
                             <a href='${(_post$type = post.type) === null || _post$type === void 0 ? void 0 : _post$type.permalink}'><p>${((_post$type2 = post.type) === null || _post$type2 === void 0 ? void 0 : _post$type2.name) || 'type'}</p></a>
                             <a href='${(_post$faculty = post.faculty) === null || _post$faculty === void 0 ? void 0 : _post$faculty.permalink}'><p>${((_post$faculty2 = post.faculty) === null || _post$faculty2 === void 0 ? void 0 : _post$faculty2.name) || 'faculty'}</p></a>
                         </div>
-                    </div>
+                    </button>
                         `;
         }));
       });
-    }, 1000);
+    }, 700);
   }
 
 }

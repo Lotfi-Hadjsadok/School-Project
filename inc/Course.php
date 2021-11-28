@@ -112,6 +112,7 @@ class Course
 
             </div>
             <div class="search__results">
+                <div class="spinner"></div>
                 <h1 class="search__results-title">Courses</h1>
                 <div class="search__results-cards">
 
@@ -121,6 +122,16 @@ class Course
             </div>
         </div>
         <?php
+    }
+    static function course_title_placeholder($title, $post)
+    {
+
+        if ($post->post_type == 'course') {
+            $my_title = "module name - course name";
+            return $my_title;
+        }
+
+        return $title;
     }
     static function add_custom_column($columns)
     {
