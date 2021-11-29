@@ -102,6 +102,7 @@ class Course
     static function search_results()
     {
         ?>
+        <i class="fas fa-search courses_search"></i>
         <div class="search__overlay">
             <div class="search__top">
                 <div class="search__top_container">

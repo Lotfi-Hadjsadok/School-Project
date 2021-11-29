@@ -143,4 +143,11 @@ Template: astra
     .search__results-cards{
         grid-template-columns: 1fr;
     }
+	.search__results-card{
+       padding:50px 2px;
+      
+    }
+    .search__results-card p{
+        font-size: 12px !important;
+    }
 }

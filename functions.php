@@ -50,6 +50,9 @@ function ast_remove_plugin_metaboxes()
 {
 	remove_meta_box('astra_settings_meta_box', '', 'side'); // Remove Astra Settings
 }
-add_shortcode('faculties', array(Course::class, 'show_faculties'));
-add_shortcode('modules', array(Course::class, 'show_modules'));
-add_shortcode('search', array(Course::class, 'search_results'));
+add_action('init', function () {
+	add_shortcode('faculties', array(Course::class, 'show_faculties'));
+	add_shortcode('modules', array(Course::class, 'show_modules'));
+
+	add_shortcode('search', array(Course::class, 'search_results'));
+});
