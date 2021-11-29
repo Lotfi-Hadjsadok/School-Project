@@ -6,7 +6,6 @@ class Search {
         this.searchOverlay = $('.search__overlay')
         this.searchInput = $('.search__input')
         this.spinner = $('.spinner')
-
         this.searchResultsTitle = $('.search__results-title')
         this.searchResultsTitle.hide()
         this.spinner.hide()
