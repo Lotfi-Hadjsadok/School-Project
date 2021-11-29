@@ -34,11 +34,15 @@ add_filter('enter_title_here', array(Course::class, 'course_title_placeholder'),
 add_filter('manage_course_posts_columns', array(Course::class, 'add_custom_column'));
 add_action('manage_course_posts_custom_column',  array(Course::class, 'custom_column_data'), 10, 2);
 add_action('after_setup_theme', array(Course::class, 'custom_image_thumbnail'));
+
 add_action('wp_enqueue_scripts', 'link_font_awesome');
 function link_font_awesome()
 {
 	wp_enqueue_script('main-js', get_stylesheet_directory_uri(__FILE__) . '/build/index.js', array('jquery'), '1.0.0', true);
 	wp_enqueue_style('fontawsome', 'https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+	wp_localize_script('main-js', 'globalData', array(
+		'site_url' => get_bloginfo('url')
+	));
 }
 add_action('rest_api_init', array(CourseApis::class, 'courses_custom_rest'));
 add_action('do_meta_boxes', 'ast_remove_plugin_metaboxes');

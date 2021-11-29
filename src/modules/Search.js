@@ -39,7 +39,7 @@ class Search {
                 this.spinner.hide()
                 return
             }
-            $.getJSON('http://school.local/wp-json/university/v1/courses?query=' + this.searchInput.val()).then(
+            $.getJSON(globalData.site_url + '/wp-json/university/v1/courses?query=' + this.searchInput.val()).then(
                 result => {
                     if (result.length == 0) {
                         this.searchResults.html('')
