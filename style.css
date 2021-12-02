@@ -22,7 +22,8 @@ Template: astra
     display: flex;
     
     border-radius: 10px;
-    padding: 50px;
+    padding: 50px 20px;
+    
     background-color: #0274be;
     color: whitesmoke;
     justify-content: center;
@@ -30,7 +31,7 @@ Template: astra
 }
 .card__faculty p,.card__module p{
    margin: 0;
-   font-size: 20px;
+   font-size: 18px;
    text-align: center;
 }
 .courses_search{
@@ -133,12 +134,16 @@ Template: astra
 }
 @media screen and (max-width:900px) {
     .container__modules,.container__faculties{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:1fr ;
     }
 
     .card__module,.card__faculty{
-        padding: 50px 20px;
-        font-size: 18px !important;
+        padding: 50px 2px;
+      
+    }
+	 .card__module p,.card__faculty p{
+        
+        font-size: 15px !important;
     }
     .search__results-cards{
         grid-template-columns: 1fr;

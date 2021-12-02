@@ -16,6 +16,10 @@ class CourseApis
             'methods' => 'GET',
             'callback' => array(CourseApis::class, 'search_courses_faculties')
         ));
+        register_rest_route('university/v1', 'faculties', array(
+            'methods' => 'GET',
+            'callback' => array(CourseApis::class, 'search_faculties')
+        ));
     }
     function get_the_course_term($taxonomy)
     {
@@ -63,6 +67,7 @@ class CourseApis
             'paged' => $data['page'],
             's' => sanitize_text_field($data['query']),
             'p' => sanitize_text_field($data['id']),
+
             'tax_query' => array(
                 array(
                     'taxonomy' => 'faculty',
@@ -89,5 +94,14 @@ class CourseApis
             ));
         }
         return $results;
+    }
+    function search_faculties()
+    {
+
+        $terms = get_terms(array(
+            'taxonomy' => 'faculty',
+            'hide_empty' => false
+        ));
+        return $terms;
     }
 }
