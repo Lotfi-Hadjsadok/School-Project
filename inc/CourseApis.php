@@ -27,6 +27,12 @@ class CourseApis
     }
     function search_courses($data)
     {
+        if ($data['id']) {
+            $ids = sanitize_text_field($data['id']);
+            $ids_array = explode(',', $ids);
+        }
+
+
         $course = new CourseApis();
         $courses = new WP_Query(array(
             'post_type' => ['course'],
@@ -34,7 +40,7 @@ class CourseApis
             'posts_per_page' => $data['page_limit'],
             'paged' => $data['page'],
             's' => sanitize_text_field($data['query']),
-            'p' => sanitize_text_field($data['id']),
+            'post__in' => $ids_array,
         ));
 
         $results = [];
